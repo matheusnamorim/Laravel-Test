@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\autoresController;
+use App\Http\Controllers\livrosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('autores', autoresController::class);
+Route::apiResource('livros', livrosController::class);

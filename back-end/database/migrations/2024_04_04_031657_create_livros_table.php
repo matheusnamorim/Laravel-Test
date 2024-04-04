@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('livros', function (Blueprint $table) {
             $table->id();
-            $table->string(column: 'titulo')->nullable(false);
-            $table->unsignedBigInteger('autor_id')->nullable(false);
+            $table->string(column: 'titulo')->nullable();
+            $table->unsignedBigInteger('autor_id');
             $table->foreign('autor_id')->on('autores')->references('id');
-            $table->string(column: 'genero')->nullable(false);
-            $table->string(column: 'sinopse')->nullable(false);
-            $table->string(column: 'capa')->nullable(false);
-            $table->year(column: 'ano_publicacao')->nullable(false);
+            $table->string(column: 'genero')->nullable();
+            $table->string(column: 'sinopse')->nullable();
+            $table->string(column: 'capa')->nullable();
+            $table->year(column: 'ano_publicacao')->nullable();
             $table->timestamps();
         });
     }

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('autores', function (Blueprint $table) {
             $table->id();
-            $table->string(column: 'nome')->nullable(false);
-            $table->string(column: 'sobrenome')->nullable(false);
-            $table->date(column: 'dtnascimento')->nullable(false);
-            $table->string(column: 'pais')->nullable(false);
-            $table->string(column: 'biografia')->nullable(false);
+            $table->string(column: 'nome')->nullable();
+            $table->string(column: 'sobrenome')->nullable();
+            $table->date(column: 'dtnascimento')->nullable();
+            $table->string(column: 'pais')->nullable();
+            $table->string(column: 'biografia')->nullable();
             $table->timestamps();
         });
     }
