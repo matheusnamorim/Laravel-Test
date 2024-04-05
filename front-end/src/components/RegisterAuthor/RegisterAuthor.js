@@ -59,7 +59,7 @@ export default function RegisterAuthor() {
                             <input type="text" name="biography" value={biography} onChange={(e) => setBiography(e.target.value)}/>
                         </div>
                         <span>
-                        <button>Atualizar</button>
+                        <button>Incluir</button>
                     </span>
                     </Form>
                 </Wrapp>

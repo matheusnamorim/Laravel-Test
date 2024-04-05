@@ -8,7 +8,7 @@ function listAuthors() {
 }
 
 function registerAuthors(body) {
-    const promise = axios.get(`${BASE_URL}/autores`, body);
+    const promise = axios.post(`${BASE_URL}/autores`, body);
     return promise;
 }
 
