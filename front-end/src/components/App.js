@@ -1,10 +1,16 @@
 import GlobalStyles from "../styles/globalStyles";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage/HomePage";
 
 export default function App() {
 	return (
 		<>
 			<GlobalStyles />
-			<div>Teste Laravel</div>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<HomePage/>}/>
+				</Routes>
+			</BrowserRouter>
 		</>
 	);
 }
