@@ -4,6 +4,7 @@ import { Wrapp, Header } from "../../styles/styles";
 import { useNavigate, useParams } from "react-router-dom";
 import { listAuthorById, updateAuthorById } from "../services/laravel-test";
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function EditAuthor() {
 
@@ -32,6 +33,10 @@ export default function EditAuthor() {
 
     function edit(event){
         event.preventDefault();
+
+        if(name === '' || lastName === '' || dtBirth === '' || country === '' || biography === '') {
+            return toast('Necessário preencher todos os campos!');
+        }
 
         updateAuthorById({
             "nome": name,
@@ -79,6 +84,7 @@ export default function EditAuthor() {
                     </span>
                     </Form>
                 </Wrapp>
+                <ToastContainer/>
             </Container>
         </>
     );

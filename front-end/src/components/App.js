@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage/HomePage";
 import EditAuthor from "./EditAuthor/EditAuthor";
 import RegisterAuthor from "./RegisterAuthor/RegisterAuthor";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
 	return (

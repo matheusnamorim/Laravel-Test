@@ -4,6 +4,7 @@ import { listAuthors, deleteAuthorById } from "../services/laravel-test";
 import ListContainer from "../../styles/ListContainer";
 import { format } from 'date-fns';
 import { BtnDelete, BtnEdit } from "../../styles/styles";
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function ListAuthors() {
 
@@ -23,6 +24,7 @@ export default function ListAuthors() {
         console.log(id);
         if(window.confirm("Deseja realmente excluir esse autor?")){
           deleteAuthorById(id).then((data) => {
+            toast('Autor excluído com sucesso!');
             setReload(!reload);
           }).catch((err) => {
             console.log(err);
@@ -33,6 +35,7 @@ export default function ListAuthors() {
     return (
         <>
             <ListContainer>
+                <ToastContainer/>
                 <table>
                     <thead>
                         <tr>

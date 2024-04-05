@@ -4,6 +4,7 @@ import { Wrapp, Header } from "../../styles/styles";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { registerAuthors } from "../services/laravel-test";
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function RegisterAuthor() {
     const navigate = useNavigate();
@@ -16,6 +17,10 @@ export default function RegisterAuthor() {
 
     function register(event){
         event.preventDefault();
+
+        if(name === '' || lastName === '' || dtBirth === '' || country === '' || biography === '') {
+            return toast('Necessário preencher todos os campos!');
+        }
 
         registerAuthors({
             "nome": name,
@@ -63,6 +68,7 @@ export default function RegisterAuthor() {
                     </span>
                     </Form>
                 </Wrapp>
+                <ToastContainer/>
             </Container>
         </>
     );
