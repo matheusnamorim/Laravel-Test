@@ -7,6 +7,11 @@ function listAuthors() {
     return promise;
 }
 
+function registerAuthors(body) {
+    const promise = axios.get(`${BASE_URL}/autores`, body);
+    return promise;
+}
+
 function listAuthorById(id) {
     const promise = axios.get(`${BASE_URL}/autores/${id}`);
     return promise;
@@ -22,4 +27,4 @@ function deleteAuthorById(id) {
     return promise;
 }
 
-export { listAuthors, deleteAuthorById, listAuthorById, updateAuthorById };
+export { listAuthors, deleteAuthorById, listAuthorById, updateAuthorById, registerAuthors };

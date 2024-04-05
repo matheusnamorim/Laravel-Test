@@ -2,44 +2,28 @@ import Container from "../../styles/Container";
 import Form from "../../styles/Form";
 import { Wrapp, Header } from "../../styles/styles";
 import { useNavigate, useParams } from "react-router-dom";
-import { listAuthorById, updateAuthorById } from "../services/laravel-test";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { registerAuthors } from "../services/laravel-test";
 
-export default function EditAuthor() {
-
+export default function RegisterAuthor() {
     const navigate = useNavigate();
 
-    const params = useParams();
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dtBirth, setDtBirth] = useState('');
     const [country, setCountry] = useState('');
     const [biography, setBiography] = useState('');
 
-    useEffect(() => {
-        listAuthorById(params.idAuthor)
-            .then((data) => {
-                const author = data.data;
-                setName(author.nome);
-                setLastName(author.sobrenome);
-                setDtBirth(author.dtnascimento);
-                setCountry(author.pais);
-                setBiography(author.biografia);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }, []);
-
-    function edit(event){
+    function register(event){
         event.preventDefault();
 
-        updateAuthorById({
+        registerAuthors({
             "nome": name,
             "sobrenome": lastName, 
             "dtnascimento": dtBirth, 
             "pais": country, 
             "biografia": biography
-            }, params.idAuthor).then((data) => {
+            }).then((data) => {
                 navigate('/');
         }).catch((err) => {
               console.log(err);
@@ -51,9 +35,9 @@ export default function EditAuthor() {
             <Container>
                 <Wrapp>
                     <Header>
-                        <h1>Editando Autor {params.idAuthor}</h1>
+                        <h1>Incluindo Autor</h1>
                     </Header>
-                    <Form onSubmit={edit} >
+                    <Form onSubmit={register} >
                         <div>
                             <p>Nome:</p>
                             <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
