@@ -1,12 +1,14 @@
-import styled from  'styled-components';
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { listAuthors } from "../services/laravel-test";
+import { listAuthors, deleteAuthorById } from "../services/laravel-test";
 import ListContainer from "../../styles/ListContainer";
 import { format } from 'date-fns';
+import { BtnDelete, BtnEdit } from "../../styles/styles";
 
 export default function ListAuthors() {
 
     const [list, setList] = useState([]);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         listAuthors()
@@ -15,7 +17,18 @@ export default function ListAuthors() {
         }).catch((error) => {
             console.log(error);
         });
-    }, []);
+    }, [reload]);
+
+    function deleteAuthor(id){
+        console.log(id);
+        if(window.confirm("Deseja realmente excluir esse autor?")){
+          deleteAuthorById(id).then((data) => {
+            setReload(!reload);
+          }).catch((err) => {
+            console.log(err);
+          });
+        }
+      }
 
     return (
         <>
@@ -44,8 +57,14 @@ export default function ListAuthors() {
                                 <td><p>{value.biografia}</p></td>
                                 <td><p>{format(new Date(value.created_at), 'dd/MM/yyyy HH:mm:ss')}</p></td>
                                 <td><p>{format(new Date(value.updated_at), 'dd/MM/yyyy HH:mm:ss')}</p></td>
-                                <td><p>Botão Editar</p></td>
-                                <td><p>Botão Excluir</p></td>
+                                <td>
+                                    <BtnEdit>
+                                        <Link to={`/editAuthor/${value.id}`} style={{ textDecoration: 'none' }}>
+                                            Editar
+                                        </Link>
+                                    </BtnEdit>
+                                </td>
+                                <td><BtnDelete onClick={() => deleteAuthor(value.id)}>Excluir</BtnDelete></td>
                             </tr>
                         )}
                     </tbody>
