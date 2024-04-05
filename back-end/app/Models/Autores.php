@@ -11,4 +11,9 @@ class Autores extends Model
 
     protected $fillable = ['nome', 'sobrenome', 'dtnascimento', 'pais', 'biografia'];
 
+    public function livros()
+    {
+        return $this->hasMany(related: Livros::class, foreignKey: 'autor_id');
+    }
+
 }
