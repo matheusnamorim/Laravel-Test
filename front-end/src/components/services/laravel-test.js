@@ -52,6 +52,12 @@ function updateBookById(body, id) {
     return promise;
 }
 
+function registerBooks(body) {
+    console.log(body);
+    const promise = axios.post(`${BASE_URL}/livros`, body);
+    return promise;
+}
+
 
 export { 
     listAuthors,
@@ -63,5 +69,6 @@ export {
     deleteBookById,
     listBookById,
     getAuthorByBookId,
-    updateBookById
+    updateBookById,
+    registerBooks
 };
