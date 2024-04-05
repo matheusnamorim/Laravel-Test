@@ -70,4 +70,13 @@ const Wrapper = styled.form`
 		justify-content: flex-end;
 		width: 100%;
 	}
+
+	select{
+		height: 50px;
+		width: 100%;
+		border-radius: 4px;
+		border: none;
+		padding-left: 10px;
+		background-color: #f0f0d8;
+	}
 `;
