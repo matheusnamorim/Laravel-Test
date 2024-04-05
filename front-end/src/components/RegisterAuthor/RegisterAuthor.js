@@ -1,7 +1,7 @@
 import Container from "../../styles/Container";
 import Form from "../../styles/Form";
 import { Wrapp, Header } from "../../styles/styles";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerAuthors } from "../services/laravel-test";
 import { toast, ToastContainer } from 'react-toastify';

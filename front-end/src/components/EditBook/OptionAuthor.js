@@ -9,7 +9,7 @@ export default function OptionAuthor({value, index, id, setAuthor}) {
     useEffect(() => {
         getAuthorByBookId(id)
             .then((data) => {
-                if (data.data.id == value.id) {
+                if (data.data.id === value.id) {
                     setSelected(true);
                     setAuthor(value.id);
                 }
