@@ -27,4 +27,14 @@ function deleteAuthorById(id) {
     return promise;
 }
 
-export { listAuthors, deleteAuthorById, listAuthorById, updateAuthorById, registerAuthors };
+function listBooks() {
+    const promise = axios.get(`${BASE_URL}/livros`);
+    return promise;
+}
+
+function deleteBookById(id) {
+    const promise = axios.delete(`${BASE_URL}/livros/${id}`);
+    return promise;
+}
+
+export { listAuthors, deleteAuthorById, listAuthorById, updateAuthorById, registerAuthors, listBooks, deleteBookById };

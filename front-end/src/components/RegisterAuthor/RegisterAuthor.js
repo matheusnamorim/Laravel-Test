@@ -31,7 +31,8 @@ export default function RegisterAuthor() {
             }).then((data) => {
                 navigate('/');
         }).catch((err) => {
-              console.log(err);
+            toast('Não foi possível concluir a operação!');
+            console.log(err);
         });
     }
 

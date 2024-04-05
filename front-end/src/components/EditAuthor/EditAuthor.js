@@ -27,6 +27,7 @@ export default function EditAuthor() {
                 setCountry(author.pais);
                 setBiography(author.biografia);
         }).catch((err) => {
+            toast('Não foi possível concluir a operação!');
             console.log(err);
         });
     }, []);
@@ -47,7 +48,8 @@ export default function EditAuthor() {
             }, params.idAuthor).then((data) => {
                 navigate('/');
         }).catch((err) => {
-              console.log(err);
+            toast('Não foi possível concluir a operação!');
+            console.log(err);
         });
     }
 

@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { listAuthors, deleteAuthorById } from "../services/laravel-test";
-import ListContainer from "../../styles/ListContainer";
-import { format } from 'date-fns';
-import { BtnDelete, BtnEdit } from "../../styles/styles";
 import { toast, ToastContainer } from 'react-toastify';
+import { format } from 'date-fns';
+import { deleteBookById, listBooks } from "../services/laravel-test";
+import ListContainer from "../../styles/ListContainer";
+import { BtnDelete, BtnEdit } from "../../styles/styles";
 
-export default function ListAuthors() {
+export default function ListBooks() {
 
     const [list, setList] = useState([]);
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        listAuthors()
+        listBooks()
             .then((data) => {
                 setList(data.data);
         }).catch((err) => {
@@ -21,14 +21,14 @@ export default function ListAuthors() {
         });
     }, [reload]);
 
-    function deleteAuthor(id){
-        if(window.confirm("Deseja realmente excluir esse autor?")){
-            deleteAuthorById(id).then((data) => {
-            toast('Autor excluído com sucesso!');
-            setReload(!reload);
+    function deleteBook(id){
+        if(window.confirm("Deseja realmente excluir esse livro?")){
+            deleteBookById(id).then((data) => {
+                toast('Livro excluído com sucesso!');
+                setReload(!reload);
             }).catch((err) => {
-            toast('Não foi possível concluir a operação!');
-            console.log(err);
+                toast('Não foi possível concluir a operação!');
+                console.log(err);
             });
         }
     }
@@ -41,10 +41,12 @@ export default function ListAuthors() {
                     <thead>
                         <tr>
                             <th>Código</th>
-                            <th>Nome Completo</th>
-                            <th>Dt. Nascimento</th>
-                            <th>País</th>
-                            <th>Biografia</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Gênero</th>
+                            <th>Sinopse</th>
+                            <th>Capa</th>
+                            <th>Ano Publicação</th>
                             <th>Dh. Criação</th>
                             <th>Dh. Atualização</th>
                             <th></th>
@@ -55,10 +57,12 @@ export default function ListAuthors() {
                         {list.map((value, index) => 
                             <tr key={index}>
                                 <td><p>{value.id}</p></td>
-                                <td><p>{value.nome} {value.sobrenome}</p></td>
-                                <td><p>{format(new Date(value.dtnascimento), 'dd/MM/yyyy')}</p></td>
-                                <td><p>{value.pais}</p></td>
-                                <td><p>{value.biografia}</p></td>
+                                <td><p>{value.titulo}</p></td>
+                                <td><p>{value.autores.nome} {value.autores.sobrenome}</p></td>
+                                <td><p>{value.genero}</p></td>
+                                <td><p>{value.sinopse}</p></td>
+                                <td><p>{value.capa}</p></td>
+                                <td><p>{value.ano_publicacao}</p></td>
                                 <td><p>{format(new Date(value.created_at), 'dd/MM/yyyy HH:mm:ss')}</p></td>
                                 <td><p>{format(new Date(value.updated_at), 'dd/MM/yyyy HH:mm:ss')}</p></td>
                                 <td>
@@ -68,7 +72,7 @@ export default function ListAuthors() {
                                         </Link>
                                     </BtnEdit>
                                 </td>
-                                <td><BtnDelete onClick={() => deleteAuthor(value.id)}>Excluir</BtnDelete></td>
+                                <td><BtnDelete onClick={() => deleteBook(value.id)}>Excluir</BtnDelete></td>
                             </tr>
                         )}
                     </tbody>
